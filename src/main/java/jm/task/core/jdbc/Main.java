@@ -1,31 +1,26 @@
 package jm.task.core.jdbc;
 
-//import com.mysql.fabric.jdbc.FabricMySQLDriver;
-
-import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
-import jm.task.core.jdbc.util.Util;
-
-import java.sql.*;
-import java.util.ListIterator;
+import jm.task.core.jdbc.service.UserService;
+import jm.task.core.jdbc.service.UserServiceImpl;
 
 public class Main {
 
     public static void main(String[] args) {
-        UserDaoJDBCImpl userDao = new UserDaoJDBCImpl();
+        UserService userService = new UserServiceImpl();
 
-        userDao.createUsersTable();
-        userDao.saveUser("Vasya", "Puking", (byte) 99);
-        userDao.saveUser("Volodya", "Putking", (byte) 69);
-        userDao.saveUser("Volondya", "Demordking", (byte) 96);
-        userDao.saveUser("And", "Other", (byte) 66);
+        userService.createUsersTable();
+        userService.saveUser("Vasya", "Puking", (byte) 99);
+        userService.saveUser("Volodya", "Putking", (byte) 69);
+        userService.saveUser("Volondya", "Demordking", (byte) 96);
+        userService.saveUser("And", "Other", (byte) 66);
 
-        for (User user : userDao.getAllUsers()) {
+        for (User user : userService.getAllUsers()) {
             System.out.println(user.toString());
         }
 
-        userDao.cleanUsersTable();
-        userDao.dropUsersTable();
+        userService.cleanUsersTable();
+        userService.dropUsersTable();
 
 
     }
